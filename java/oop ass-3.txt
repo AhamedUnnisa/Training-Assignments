@@ -1,0 +1,50 @@
+package object;
+
+public class poly {
+	public static void main(String[] args)
+	{
+		bank b ;
+	
+		b=new saving();
+		b.display();
+		b=new current();
+		b.display();
+	}
+}
+package object;
+
+public class bank {
+	void display()
+		{
+			System.out.println("account");
+		
+		}
+
+	}
+package object;
+
+public class saving extends bank{
+	void display()
+	{
+		int number=10000;
+		System.out.println("saving account holder");
+		System.out.println("Fixed deposit:"+number);
+	}
+
+}
+package object;
+
+public class current extends bank {
+	void display()
+	{
+		int number=5000;
+		System.out.println("Current account holder");
+		System.out.println("credit cash:"+number);
+	}
+
+
+}
+output:saving account holder
+Fixed deposit:10000
+Current account holder
+credit cash:5000
