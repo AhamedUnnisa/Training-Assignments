@@ -1,0 +1,78 @@
+4.Test the following principle regarding abstraction
+1. if any class  has any of its method abstract then you must declare entire class abstract
+package object;
+
+ public class Demo {
+	void call()
+	{
+		System.out.println("calling");
+	}
+	abstract void play()
+	{
+		System.out.println("playing");
+	}
+
+	public static void main(String[] args) {
+		Demo d1=new Demo();
+				d1.call();
+				Demo d2=new Demo();
+				d2.play();
+		// TODO Auto-generated method stub
+
+	}
+
+}
+Error-The abstract method playmusic in type Demo can only be defined by an abstract class
+          The abstract method play in type Demo can only be defined by an abstract class
+
+2. Abstract class cannot be initiated
+package object;
+public class Demo {
+	void call()
+	{
+		System.out.println("calling");
+	}
+public static void main(String[] args) {
+	Demo d1=new Demo();
+                 d1.call();
+				
+}
+}
+Error-Exception in thread "main" java.lang.Error: Unresolved compilation problems: 
+	The type Demo must be an abstract class to define abstract methods
+	The abstract method play in type Demo can only be defined by an abstract class
+	Abstract methods do not specify a body
+
+3.when we extend the abstract class we must either override all the abstrct methods in suclass or declare subclass as abstract
+package object;
+public class Demo{
+public static void main(String args[])
+{
+Demo2 obj=new Demo2();
+obj.call();
+obj.play();
+}
+}
+abstarct class Demo1
+{
+abstract void call();
+abstract void play();
+}
+class Demo2 extends Demo1{
+void call()
+{
+System.out.println("calling");
+}
+void play()
+{
+system.out.println("playing");
+}
+}
+
+4.Abstract class cannot be private
+output-Exception in thread "main" java.lang.Error: Unresolved compilation problems
+5.Abstract class cannot be final
+output-Exception in thread "main" java.lang.Error: Unresolved compilation problems
+the class Demo1 can be either abstract or final not both
+6.You can declare a class abstract without having any abstarct method
+Ans- yes we can have an abstract class without abstarct methods as both are independent concepts.
