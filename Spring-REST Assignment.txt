@@ -1,0 +1,393 @@
+1.package com.example.demo;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloController {
+@RequestMapping("/hello")
+public String sayHi() {
+	return "helloworld";
+}
+}
+output:
+http://localhost:8050/hello
+helloworld
+
+
+
+
+
+
+2.valid or invalid
+
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Assig2Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Assig2Application.class, args);
+	}
+
+}
+
+user.java
+package com.example.demo;
+
+public class User {
+	String username,password;
+
+	
+	public User(String username) {
+		super();
+		this.username = username;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
+
+}
+
+Usercredentials.java
+
+package com.example.demo;
+
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@RestController
+public class UserCredentials {
+	@RequestMapping(value = "/user={username}/pass={password}", method=RequestMethod.GET)
+	
+	public ResponseEntity<String> AuthUserget (@PathVariable("username") String name,@PathVariable("password") String password){
+		System.out.println("username:"+name.toString());
+		System.out.println("password"+password.toString());
+		if(name.toString().equals("Unnisa")&& password.toString().equals("Unnisa123"))
+		{
+			return new ResponseEntity<String>("valid user",HttpStatus.FOUND);
+			
+		}else
+		{
+			return new ResponseEntity<String>("Invalid user",HttpStatus.FOUND);
+		}
+		
+	}
+	
+
+}
+------------------------------------------------------
+3.  state,city,country,zipcode
+
+RestUserResponse.java
+
+package com.example.demo;
+
+public class RestUserResponse {
+	private int zip;
+	private String state;
+	private String city;
+	private String country;
+	
+	
+	public RestUserResponse(int zip, String state, String city, String country) {
+		super();
+		this.zip = zip;
+		this.state = state;
+		this.city = city;
+		this.country = country;
+	}
+	private int getZip() {
+		return zip;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	@Override
+	public String toString() {
+		return "RestUserResponse [zip=" + zip + ", state=" + state + ", city=" + city + ", country=" + country + "]";
+	}
+	public void setZip(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}
+
+Zipcode.java
+
+package com.example.demo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class Zipcode 
+{
+ 
+@RequestMapping("/user")
+public List<RestUserResponse> getdetails()
+{
+    List<RestUserResponse> list=new ArrayList<RestUserResponse>();
+    
+    RestUserResponse user=new RestUserResponse(0, null, null, null);
+    
+    user.setZip(50044);
+    user.setCity("Vizag");
+    user.setState("Andhra Pradesh");
+    user.setCountry("India");
+
+    RestUserResponse user1=new RestUserResponse(0, null, null, null);
+    user1.setZip(50008);
+    user1.setCity("Hyderabad");
+    user1.setState("Telangaya");
+    user1.setCountry("India");
+
+    list.add(user);
+    list.add(user1);
+
+    return list;
+}
+
+
+
+
+
+--------------------------------------------------------
+5.
+Employee Managment System
+
+
+hellocontroller.java
+
+package com.example.demo.hello;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloController {
+	
+	@RequestMapping("/hello")
+	
+	public String sayHi() {
+		return "Hi";
+	}
+	
+
+}
+
+Employee.java
+
+package com.example.demo.topic;
+
+public class Employee {
+
+	private String id;
+	private String name;
+	private String department;
+	private String designation;
+	private String salary;
+	
+	
+	public Employee() {
+	}
+	
+    public Employee(String id, String name, String department, String designation, String salary) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.department = department;
+		this.designation = designation;
+		this.salary = salary;
+	}
+    
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+	public String getDesignation() {
+		return designation;
+	}
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+	public String getSalary() {
+		return salary;
+	}
+	public void setSalary(String salary) {
+		this.salary = salary;
+	}
+	
+	
+	
+TopicController.java
+
+package com.example.demo.topic;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+
+public class TopicController {
+
+	
+	@Autowired
+	private TopicService topicService;
+	
+	@RequestMapping("/topics")
+	
+	public List<Employee> getAllTopics() {
+		return topicService.getAllEmployees();
+	}
+	
+	@RequestMapping("/topics/{id}")
+	public Employee getEmployee(@PathVariable String id) {
+		return topicService.getEmployee(id);		
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/topics")
+	public void addEmployee(@RequestBody Employee employee) {
+		topicService.addEmployee(employee);
+		
+	}
+	
+	@RequestMapping(method=RequestMethod.PUT, value="/topics/{id}")
+	public void updateEmployee(@RequestBody Employee employee, @PathVariable String id) {
+		topicService.updateEmployee(id,employee);
+		
+}
+	
+	@RequestMapping(method=RequestMethod.DELETE, value="/topics/{id}")
+	public void deleteEmployee(@PathVariable String id) {
+		topicService.deleteEmployee(id);
+}
+
+}
+ 
+TopicService.java
+
+package com.example.demo.topic;
+
+
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+@Service
+
+public class TopicService {
+
+	
+	 private List<Employee> employees=new ArrayList<>(Arrays.asList(
+				new Employee("501","Rahima","JavaD","Analyst","300000"),
+				new Employee("502","Rahim","CIS","Sr.Analyst","400000"),
+				new Employee("503","Sufia","Cloud","HR","500000")
+						));
+	 
+	 public  List<Employee> getAllEmployees(){
+		 return employees;
+		 
+	 }
+	 public Employee getEmployee(String id) {
+		 return employees.stream().filter(t -> t.getId().equals(id)).findFirst().get();
+	 }
+	public void addEmployee(Employee employee) {
+		employees.add(employee);
+		
+		
+	}
+	public void updateEmployee(String id, Employee employee) {
+		for(int i=0; i< employees.size(); i++) {
+			Employee e= employees.get(i);
+			if(e.getId().equals(id)) {
+				employees.set(i, employee);
+				return;
+			} 
+			
+		}
+		
+	}
+	
+	public void deleteEmployee(String id) {
+		employees.removeIf(t -> t.getId().equals(id));
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
